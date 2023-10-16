@@ -1,0 +1,37 @@
+682. Baseball Game
+https://leetcode.com/problems/baseball-game/description/
+
+class Solution {
+public:
+    int calPoints(vector<string>& operations) {
+        stack<int> stack;
+        for(int i=0;i<operations.size();i++){
+            if(operations[i]=="+"&&stack.size()>=2){
+                int lastElement=stack.top();
+                stack.pop();
+                int secondlastelement=stack.top();
+                int sumtwo=lastElement+secondlastelement;
+                stack.push(lastElement);
+                stack.push(sumtwo);
+
+            }
+            else if(operations[i]=="D"&&stack.size()>=1){
+                stack.push(stack.top()*2);
+            }
+            else if(operations[i]=="C"&&stack.size()>=1){
+                stack.pop();
+            }
+            else{
+                stack.push(stoi(operations[i]));
+            }
+        }
+        int sum=0;
+        while (!stack.empty()) {
+            sum += stack.top();
+            stack.pop();
+        }
+        return sum;
+    }
+};
+
+//Ahmed Hesham
