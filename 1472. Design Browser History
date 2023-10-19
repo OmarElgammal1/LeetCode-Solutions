@@ -1,0 +1,51 @@
+1472. Design Browser History
+https://leetcode.com/problems/design-browser-history/description/
+struct node{
+    string data;
+    node* next=nullptr;
+    node* prev=nullptr;
+};
+class BrowserHistory {
+  
+node* curr=nullptr;  
+public:
+    BrowserHistory(string homepage) {
+        curr = new node();
+        curr->data=homepage;
+    }
+    
+    void visit(string url) {
+       node* temp=new node();
+        temp->data=url;
+        curr->next=temp;
+        temp->prev=curr;
+        curr=temp;
+    }
+    
+    string back(int steps) {
+        while(curr->prev && steps>0){
+curr=curr->prev;
+steps--;
+        }
+        return curr->data;
+    }
+    
+    string forward(int steps) {
+        while(curr->next && steps>0){
+curr=curr->next;
+steps--;
+        }
+        return curr->data;
+    }
+    
+};
+
+/**
+ * Your BrowserHistory object will be instantiated and called as such:
+ * BrowserHistory* obj = new BrowserHistory(homepage);
+ * obj->visit(url);
+ * string param_2 = obj->back(steps);
+ * string param_3 = obj->forward(steps);
+ */
+
+//Ahmed Hesham 
