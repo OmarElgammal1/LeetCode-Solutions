@@ -1,0 +1,40 @@
+75. Sort Colors
+https://leetcode.com/problems/sort-colors/description/
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+       vector<int> zero;
+       vector<int> one;
+       vector<int> second;
+       for(int i=0;i<nums.size();i++)
+       {
+           if(nums[i]==0){
+               zero.push_back(nums[i]);
+           }
+           else if(nums[i]==1){
+               one.push_back(nums[i]);
+           }
+           else{
+                second.push_back(nums[i]);
+           }
+       }
+       vector<int> all;
+       for(int i=0;i<zero.size();i++)
+       {
+           all.push_back(zero[i]);
+       }
+       for(int i=0;i<one.size();i++)
+       {
+           all.push_back(one[i]);
+       }
+       for(int i=0;i<second.size();i++)
+       {
+           all.push_back(second[i]);
+       }
+       for(int i=0;i<all.size();i++)
+       {
+           nums[i]=all[i];
+       }
+    }
+};
+//Ahmed Hesham
