@@ -1,0 +1,24 @@
+973. K Closest Points to Origin
+
+class Solution {
+public:
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
+        vector<pair<int, double>> ans;
+
+    for (int i = 0; i < points.size(); i++) {
+        int x = points[i][0];
+        int y = points[i][1];
+        double distance = sqrt(x * x + y * y);
+        ans.push_back(make_pair(i, distance));
+    }
+    sort(ans.begin(), ans.end(), [](const pair<int, double>& a, const pair<int, double>& b) {
+        return a.second < b.second;
+    });
+    vector<vector<int>> result;
+        for (int i = 0; i < k; i++) {
+            result.push_back(points[ans[i].first]);
+        }
+
+        return result;
+    }
+};
